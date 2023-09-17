@@ -1,10 +1,15 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Plus, Tools } from "../styles/fontAwesome";
+
 function Skills() {
     const defaultSkills = ['Javascript', 'React', 'Redux', 'Tailwind', 'CSS', 'Node JS'];
     return (
-        <div className='skills my-2 flex flex-col gap-2'>
+        <div className='skills my-2 flex flex-col gap-3'>
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold">Skills</h2>
-                <button className="px-2 py-2 bg-blue-500 text-white rounded-sm">Add Skills</button>
+                <h2 className="text-2xl font-bold"> <FontAwesomeIcon icon={Tools} className="mr-3"/>Skills</h2>
+                <button className='bg-gray-200 px-5 py-2 rounded-lg'>
+                    <FontAwesomeIcon icon={Plus}/> Skills
+                </button>
             </div>
             <div className="max-h-[15rem] overflow-y-auto">
                 <ul className="flex flex-col gap-2">

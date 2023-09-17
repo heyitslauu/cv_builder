@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { User } from "../styles/fontAwesome";
 import InputGroup from "./molecules/InputGroup";
+
 function GeneralInfo() {
 
     const [formInput, setFormInput] = useState({
@@ -17,8 +20,8 @@ function GeneralInfo() {
     
     return (
         <div>
-            <form className="flex flex-col gap-3">
-                <h1 className='text-h1 text-3xl font-bold mb-2'>Personal Details</h1>
+            <form className="flex flex-col">
+                <h1 className='text-h1 text-2xl font-bold  mb-2 flex items-center'><FontAwesomeIcon icon={User} className="mr-3"/>Personal Details</h1>
                 <InputGroup 
                     labelText='Full Name'
                     value={formInput.fullName || ''}  
