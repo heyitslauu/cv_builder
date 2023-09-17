@@ -6,7 +6,7 @@ function InputGroup({labelText, onChange, value, id}) {
                 <span className="font-bold text-xl">{labelText}</span>
                 <span className="text-xs font-light ml-2 text-gray-600">Required</span>
             </label>
-            <input type="text" className="w-full bg-gray-100 ounded-sm px-2 py-2"
+            <input type="text" className="w-full bg-gray-100 rounded-md px-2 py-2 focus:outline-none focus:ring focus:ring-gray-300"
                 required 
                 value={value}  
                 name={id}

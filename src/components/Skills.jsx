@@ -4,7 +4,7 @@ import { Plus, Tools } from "../styles/fontAwesome";
 function Skills() {
     const defaultSkills = ['Javascript', 'React', 'Redux', 'Tailwind', 'CSS', 'Node JS'];
     return (
-        <div className='skills my-2 flex flex-col gap-3'>
+        <div className='skills flex flex-col gap-3 bg-white px-6 py-6 rounded-lg'>
             <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold"> <FontAwesomeIcon icon={Tools} className="mr-3"/>Skills</h2>
                 <button className='bg-gray-200 px-5 py-2 rounded-lg'>

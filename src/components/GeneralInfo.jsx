@@ -19,7 +19,7 @@ function GeneralInfo() {
     }
     
     return (
-        <div>
+        <div className="bg-white px-6 py-6 rounded-lg">
             <form className="flex flex-col">
                 <h1 className='text-h1 text-2xl font-bold  mb-2 flex items-center'><FontAwesomeIcon icon={User} className="mr-3"/>Personal Details</h1>
                 <InputGroup 

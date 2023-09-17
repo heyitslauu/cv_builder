@@ -1,18 +1,22 @@
+import { useState } from "react";
+import Accordion from "./molecules/Accordion";
+
 function EducationSection() {
+    const [isActive, setIsActive] = useState(false);
+
+    const handleAccordionChange = () => {
+        setIsActive(!isActive);
+    }
     return  (
-        <>
-            <h1>Education</h1>
-            <div>
-                <h3 className="school">Yale University</h3>
-                <h4 className="degree">Masters</h4>
-                <h5 className="yearGrad">2021</h5>
-            </div>
-            <div>
-                <h3 className="school">Yale University</h3>
-                <h4 className="degree">Bachelors</h4>
-                <h5 className="yearGrad">2021</h5>
-            </div>
-        </>
+        <div className='bg-white px-6 py-6 rounded-lg'>
+            <Accordion 
+                isActive={isActive}
+                accordionTitle='Education'
+                accordionContent='Lorem Ipsum'
+                type='educ'
+                handleClick={handleAccordionChange}
+            />
+        </div>
     )
 }
 
