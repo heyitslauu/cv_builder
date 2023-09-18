@@ -13,7 +13,7 @@ function Accordion({isActive, accordionTitle, accordionContent, handleClick, typ
                     <FontAwesomeIcon icon={type === 'educ' ? GradCap: BriefCase} className="mr-3"/>
                     {accordionTitle}
                 </h2>
-                <FontAwesomeIcon icon={!isActive ? CaretDown : CaretUp} className="text-blue-600 text-2xl" />
+                <FontAwesomeIcon icon={!isActive ? CaretDown : CaretUp} className="cursor-pointer text-blue-600 text-2xl" />
             </div>
 
             {isActive && type === 'expi' &&
@@ -22,7 +22,7 @@ function Accordion({isActive, accordionTitle, accordionContent, handleClick, typ
                         <p className="text-lg px-2 py-2">{accordionContent}</p>
                     </div>
                     <div className='addContext mx-auto flex justify-center mt-2'>
-                        <button className='bg-gray-200 px-5 py-2 rounded-lg'>
+                        <button className='cursor-pointer bg-gray-200 px-5 py-2 rounded-lg'>
                             <FontAwesomeIcon icon={Plus}/> Experience
                         </button>
                     </div>
