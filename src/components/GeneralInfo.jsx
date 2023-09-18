@@ -1,22 +1,10 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { User } from "../styles/fontAwesome";
 import InputGroup from "./molecules/InputGroup";
 
-function GeneralInfo() {
-
-    const [formInput, setFormInput] = useState({
-       fullName: 'John Doe',
-       email: 'johndoe@email.xyz',
-       phone: '09123456789',
-       address: 'New York City'
-    });
-
-    const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        console.log(name);
-        setFormInput({...formInput, [name] : value});
-    }
+function GeneralInfo({formInput, onInputChange}) {
     
     return (
         <div className="bg-white px-6 py-6 rounded-lg">
@@ -25,25 +13,25 @@ function GeneralInfo() {
                 <InputGroup 
                     labelText='Full Name'
                     value={formInput.fullName || ''}  
-                    onChange={handleInputChange}
+                    onChange={onInputChange}
                     id='fullName'
                 />
                 <InputGroup 
                     labelText='Email'
                     value={formInput.email || ''}  
-                    onChange={handleInputChange}
+                    onChange={onInputChange}
                     id='email'
                 />
                 <InputGroup 
                     labelText='Phone'
                     value={formInput.phone || ''}  
-                    onChange={handleInputChange}
+                    onChange={onInputChange}
                     id='phone'
                 />
                 <InputGroup 
                     labelText='Address'
                     value={formInput.address || ''}  
-                    onChange={handleInputChange}
+                    onChange={onInputChange}
                     id='address'
                 />
             </form>
