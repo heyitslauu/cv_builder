@@ -1,8 +1,33 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CaretUp, CaretDown, BriefCase, Plus, GradCap } from "../../styles/fontAwesome";
-
+import { CaretUp, CaretDown, BriefCase, GradCap,  } from "../../styles/fontAwesome";
+import ExpiForm from "../ExpiForm";
+import ExpiContent from "../ExpiContent"
+import ExpiEditForm from "../ExpiEditForm";
 // eslint-disable-next-line react/prop-types
-function Accordion({isActive, accordionTitle, accordionContent, handleClick, type}) {
+function Accordion({isActive, accordionTitle, experiences, handleClick, type, expiForm, onFormChange, onAddExperience, onResetExperience}) {
+
+    // const [isEducFormVisible, setisEducFormVisible] = useState(false);
+    const [isExpiFormVisible, setisExpiFormVisible] = useState(false);
+    // const [isEditFormActive, setIsEditFormActive] = useState(false);
+
+    const handleShowExpiForm = () => {
+        setisExpiFormVisible(!isExpiFormVisible);
+    }
+
+
+    const [editedExperienceId, setEditedExperienceId] = useState(null);
+
+    const handleEditExperience = (id) => {
+        setEditedExperienceId(id);
+    };
+
+    const cancelEditExperience = () => {
+        setEditedExperienceId(null)
+    }
+
+    
     return (
         <div className='accordion'>
             <div 
@@ -18,31 +43,39 @@ function Accordion({isActive, accordionTitle, accordionContent, handleClick, typ
 
             {isActive && type === 'expi' &&
                 <div className="accordion-content">
-                    <div className="flex flex-col gap-2 border-y-2 border-gray-200">
-                        <p className="text-lg px-2 py-2">{accordionContent}</p>
-                    </div>
-                    <div className='addContext mx-auto flex justify-center mt-2'>
-                        <button className='cursor-pointer bg-gray-200 px-5 py-2 rounded-lg'>
-                            <FontAwesomeIcon icon={Plus}/> Experience
-                        </button>
-                    </div>
-                </div>
-            }
+                    { !isExpiFormVisible ? 
+                    (
+                        <div>
+                            { editedExperienceId == null && (
+                                <ExpiContent 
+                                onShowForm={handleShowExpiForm} 
+                                experiences={experiences}
+                                onEditExperience={handleEditExperience}
+                                />
+                                )
+                            }
+                             {editedExperienceId !== null && (
+                                 <ExpiEditForm 
+                                    experience={experiences.find((expi) => expi.id === editedExperienceId)}
+                                    onEditCancel={cancelEditExperience}
+                                />
+                            )}
+                           
 
-            {isActive && type === 'educ' &&
-                <div className="accordion-content">
-                    <div className="flex flex-col gap-2 border-y-2 border-gray-200">
-                        <div className="flex">
-                            <h3 className="text-lg px-2 py-2 font-medium">Yale University</h3>
-                            {/* <h5>Bachelor&apos;s in Computer Science</h5>
-                            <h4>2021</h4> */}
                         </div>
-                    </div>
-                    <div className='addContext mx-auto flex justify-center mt-2'>
-                        {/* <button className='bg-gray-200 px-5 py-2 rounded-lg'>
-                            <FontAwesomeIcon icon={Plus}/> Experience
-                        </button> */}
-                    </div>
+                    ) : (
+                        
+                        <ExpiForm 
+                            onShowForm={handleShowExpiForm} 
+                            expiForm={expiForm} 
+                            onFormChange={onFormChange} 
+                            onAddExperience={onAddExperience}
+                            onResetExperience={onResetExperience}
+                        />
+                    
+                    )}
+
+                    
                 </div>
             }
         </div>
@@ -50,3 +83,6 @@ function Accordion({isActive, accordionTitle, accordionContent, handleClick, typ
 }
 
 export default Accordion;
+
+//TODO: Separate Accordion for Education 
+//TODO: Clean up props

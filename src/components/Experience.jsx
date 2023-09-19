@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 import Accordion from "./molecules/Accordion";
 
-function Experience() {
+function Experience({experiences, expiForm, onFormChange, onAddExperience, onResetExperience}) {
     const [isActive, setIsActive] = useState(false);
     
     const handleAccordionChange = () => {
@@ -13,8 +14,14 @@ function Experience() {
             <Accordion 
                 isActive={isActive}
                 accordionTitle='Experience'
-                accordionContent='Lorem Ipsum'
+                accordionContent='Full Stack Developer'
                 type='expi'
+                experiences={experiences}
+                expiForm={expiForm}
+                onAddExperience={onAddExperience}
+                onFormChange={onFormChange}
+                // onEditExperience={onEditExperience}
+                onResetExperience={onResetExperience}
                 handleClick={handleAccordionChange}
             />
         </div>
@@ -22,3 +29,5 @@ function Experience() {
 }
 
 export default Experience;
+
+//TODO: Clean up unused props
