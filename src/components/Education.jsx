@@ -12,7 +12,7 @@ function EducationSection() {
             <Accordion 
                 isActive={isActive}
                 accordionTitle='Education'
-                accordionContent='Lorem Ipsum'
+                accordionContent='Yale University'
                 type='educ'
                 handleClick={handleAccordionChange}
             />
