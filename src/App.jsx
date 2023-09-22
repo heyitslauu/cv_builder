@@ -95,7 +95,18 @@ function App() {
     setExperienceInfo((prevExperienceInfo) => [...prevExperienceInfo, newExperience])
   }
 
+  const updateExperience = (updatedExperience) => {
+    setExperienceInfo((prevExperienceInfo) =>
+      prevExperienceInfo.map((experience) =>
+        experience.id === updatedExperience.id ? updatedExperience : experience
+      )
+    );
+  };
  
+
+  const onDeleteExperience = (updatedExperience) => {
+    setExperienceInfo(updatedExperience)
+  }
 
   return (
     <div className="px-6 py-6 grid gap-4 grid-cols-2 bg-gray-200">
@@ -107,8 +118,9 @@ function App() {
           expiForm={expiInfo} 
           onFormChange={handleExpiFormInput} 
           onAddExperience={addExperience}
-          // onEditExperience={handleEditExperience}
+          onUpdateExperience={updateExperience}
           onResetExperience={resetExpiForm}
+          onDeleteExperience={onDeleteExperience}
           
         />
         {/* <EducationSection/> */}

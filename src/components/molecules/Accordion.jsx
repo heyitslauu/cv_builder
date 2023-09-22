@@ -6,7 +6,7 @@ import ExpiForm from "../ExpiForm";
 import ExpiContent from "../ExpiContent"
 import ExpiEditForm from "../ExpiEditForm";
 // eslint-disable-next-line react/prop-types
-function Accordion({isActive, accordionTitle, experiences, handleClick, type, expiForm, onFormChange, onAddExperience, onResetExperience}) {
+function Accordion({isActive, accordionTitle, experiences, handleClick, type, expiForm, onFormChange, onAddExperience, onResetExperience, onUpdateExperience, onDeleteExperience}) {
 
     // const [isEducFormVisible, setisEducFormVisible] = useState(false);
     const [isExpiFormVisible, setisExpiFormVisible] = useState(false);
@@ -51,6 +51,7 @@ function Accordion({isActive, accordionTitle, experiences, handleClick, type, ex
                                 onShowForm={handleShowExpiForm} 
                                 experiences={experiences}
                                 onEditExperience={handleEditExperience}
+                                onDeleteExperience={onDeleteExperience}
                                 />
                                 )
                             }
@@ -58,6 +59,7 @@ function Accordion({isActive, accordionTitle, experiences, handleClick, type, ex
                                  <ExpiEditForm 
                                     experience={experiences.find((expi) => expi.id === editedExperienceId)}
                                     onEditCancel={cancelEditExperience}
+                                    onUpdateExperience={onUpdateExperience}
                                 />
                             )}
                            

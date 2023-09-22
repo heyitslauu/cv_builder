@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import Accordion from "./molecules/Accordion";
 
-function Experience({experiences, expiForm, onFormChange, onAddExperience, onResetExperience}) {
+function Experience({experiences, expiForm, onFormChange, onAddExperience, onResetExperience, onUpdateExperience, onDeleteExperience}) {
     const [isActive, setIsActive] = useState(false);
     
     const handleAccordionChange = () => {
@@ -20,7 +20,8 @@ function Experience({experiences, expiForm, onFormChange, onAddExperience, onRes
                 expiForm={expiForm}
                 onAddExperience={onAddExperience}
                 onFormChange={onFormChange}
-                // onEditExperience={onEditExperience}
+                onUpdateExperience={onUpdateExperience}
+                onDeleteExperience={onDeleteExperience}
                 onResetExperience={onResetExperience}
                 handleClick={handleAccordionChange}
             />

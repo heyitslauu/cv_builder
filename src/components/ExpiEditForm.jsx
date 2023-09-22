@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
-function ExpiEditForm({experience, onEditCancel}) {
+function ExpiEditForm({experience, onEditCancel, onUpdateExperience}) {
 
-
+    // const experienceID = experience.id;
     const [editedExperience, setEditedExperience] = useState(experience);
 
     // Handle changes in form fields
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        console.log('triggered')
         setEditedExperience({
         ...editedExperience,
         [name]: value,
@@ -19,7 +18,8 @@ function ExpiEditForm({experience, onEditCancel}) {
 
     const handleSumbit = (e) => {
         e.preventDefault();
-        console.log(editedExperience);
+        onUpdateExperience(editedExperience)
+        onEditCancel();
     }
     return (
         <div className="expiForm flex flex-col gap-2">
