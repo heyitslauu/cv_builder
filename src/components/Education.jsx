@@ -1,7 +1,9 @@
 import { useState } from "react";
-import Accordion from "./molecules/Accordion";
+/* eslint-disable react/prop-types */
 
-function EducationSection() {
+import EducAccordion from "./molecules/EducAccordion";
+
+function EducationSection({education}) {
     const [isActive, setIsActive] = useState(false);
 
     const handleAccordionChange = () => {
@@ -9,12 +11,10 @@ function EducationSection() {
     }
     return  (
         <div className='bg-white px-6 py-6 rounded-lg'>
-            <Accordion 
-                isActive={isActive}
-                accordionTitle='Education'
-                accordionContent='Yale University'
-                type='educ'
-                handleClick={handleAccordionChange}
+            <EducAccordion 
+                isActive={isActive} 
+                education={education}
+                handleAccordionChange={handleAccordionChange}
             />
         </div>
     )
