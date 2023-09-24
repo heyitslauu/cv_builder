@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import GeneralInfo from './components/GeneralInfo';
-// import EducationSection from './components/Education';
+import EducationSection from './components/Education';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 
@@ -29,8 +29,8 @@ function App() {
   }
 
   //Skill Set Props
-  // const defaultSkills = ['Javascript', 'React', 'Redux', 'Tailwind', 'CSS', 'Node JS', 'Express JS', "Mongo DB"];
-  const defaultSkills = ['Javascript', ];
+  const defaultSkills = ['Javascript', 'React', 'Redux', 'Tailwind', 'CSS', 'Node JS', 'Express JS', "Mongo DB"];
+  // const defaultSkills = ['Javascript', ];
   const [skillSet, setSkillSet] = useState(defaultSkills);
 
   const handleAddNewSkills = (newSkills) => {
@@ -108,6 +108,21 @@ function App() {
     setExperienceInfo(updatedExperience)
   }
 
+  const [educationInfo, setEducationInfo] = useState([
+    {
+      id: uuidv4(),
+      school: "Yale University",
+      degree: "Bachelor of Science in Computer Science",
+      completionDate: 2018
+    },
+    {
+      id: uuidv4(),
+      school: "Harvard University",
+      degree: "Bachelor of Science in Information Science",
+      completionDate: 2014
+    },
+  ])
+
   return (
     <div className="px-6 py-6 grid gap-4 grid-cols-2 bg-gray-200">
       <div className='editable rounded-md flex flex-col gap-4'>
@@ -123,13 +138,15 @@ function App() {
           onDeleteExperience={onDeleteExperience}
           
         />
-        {/* <EducationSection/> */}
+        <EducationSection
+          education={educationInfo}
+        />
       </div>
       <div className="liveDisplay bg-white flex flex-col gap-4">
         <DisplayHeader formInput={generalInfo}/>
         <DisplaySkills skillSets={skillSet}/>
         <DisplayExperience experiences={experienceInfo} />
-        <DisplayEducation/>
+        <DisplayEducation education={educationInfo}/>
       </div>
       
     </div>
