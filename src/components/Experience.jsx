@@ -13,9 +13,6 @@ function Experience({experiences, expiForm, onFormChange, onAddExperience, onRes
         <div className='bg-white px-6 py-6 rounded-lg'>
             <Accordion 
                 isActive={isActive}
-                accordionTitle='Experience'
-                accordionContent='Full Stack Developer'
-                type='expi'
                 experiences={experiences}
                 expiForm={expiForm}
                 onAddExperience={onAddExperience}
@@ -30,5 +27,3 @@ function Experience({experiences, expiForm, onFormChange, onAddExperience, onRes
 }
 
 export default Experience;
-
-//TODO: Clean up unused props

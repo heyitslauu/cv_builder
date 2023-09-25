@@ -1,23 +1,19 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CaretUp, CaretDown, BriefCase, GradCap,  } from "../../styles/fontAwesome";
+import { CaretUp, CaretDown, BriefCase,  } from "../../styles/fontAwesome";
 import ExpiForm from "../ExpiForm";
 import ExpiContent from "../ExpiContent"
 import ExpiEditForm from "../ExpiEditForm";
-// eslint-disable-next-line react/prop-types
-function Accordion({isActive, accordionTitle, experiences, handleClick, type, expiForm, onFormChange, onAddExperience, onResetExperience, onUpdateExperience, onDeleteExperience}) {
 
-    // const [isEducFormVisible, setisEducFormVisible] = useState(false);
+function Accordion({isActive, experiences, handleClick, expiForm, onFormChange, onAddExperience, onResetExperience, onUpdateExperience, onDeleteExperience}) {
+    
     const [isExpiFormVisible, setisExpiFormVisible] = useState(false);
-    // const [isEditFormActive, setIsEditFormActive] = useState(false);
+    const [editedExperienceId, setEditedExperienceId] = useState(null);
 
     const handleShowExpiForm = () => {
         setisExpiFormVisible(!isExpiFormVisible);
     }
-
-
-    const [editedExperienceId, setEditedExperienceId] = useState(null);
 
     const handleEditExperience = (id) => {
         setEditedExperienceId(id);
@@ -26,7 +22,6 @@ function Accordion({isActive, accordionTitle, experiences, handleClick, type, ex
     const cancelEditExperience = () => {
         setEditedExperienceId(null)
     }
-
     
     return (
         <div className='accordion'>
@@ -35,13 +30,13 @@ function Accordion({isActive, accordionTitle, experiences, handleClick, type, ex
                 onClick={handleClick}
             >
                 <h2 className="font-bold text-2xl py-2">
-                    <FontAwesomeIcon icon={type === 'educ' ? GradCap: BriefCase} className="mr-3"/>
-                    {accordionTitle}
+                    <FontAwesomeIcon icon={BriefCase} className="mr-3"/>
+                    Experience
                 </h2>
                 <FontAwesomeIcon icon={!isActive ? CaretDown : CaretUp} className="cursor-pointer text-blue-600 text-2xl" />
             </div>
 
-            {isActive && type === 'expi' &&
+            {isActive &&
                 <div className="accordion-content">
                     { !isExpiFormVisible ? 
                     (
@@ -85,6 +80,3 @@ function Accordion({isActive, accordionTitle, experiences, handleClick, type, ex
 }
 
 export default Accordion;
-
-//TODO: Separate Accordion for Education 
-//TODO: Clean up props
