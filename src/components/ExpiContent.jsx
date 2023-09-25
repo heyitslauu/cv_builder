@@ -6,8 +6,9 @@ import { Plus, Edit, Remove } from "../styles/fontAwesome";
 function ExpiContent({onShowForm, experiences, onEditExperience, onDeleteExperience}) {
 
     const handleDeleteExperience = (id) => {
+        const indexToDelete = experiences.findIndex((expi) => expi.id == id);
         const updatedExperience = [...experiences];
-        updatedExperience.splice(id, 1);
+        updatedExperience.splice(indexToDelete, 1);
         onDeleteExperience(updatedExperience)
     }
 
