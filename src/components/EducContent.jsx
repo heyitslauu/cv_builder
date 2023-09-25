@@ -15,7 +15,7 @@ function EducContent({education, handleDeleteEducation, handleFormShow, handleEd
                             <button className="px-2 py-2 rounded-sm" onClick={() => handleEdit(educ.id)}>
                                 <FontAwesomeIcon icon={Edit} className="text-2xl cursor-pointer"/>
                             </button>
-                            <button className="px-2 py-2 rounded-sm" onClick={handleDeleteEducation}>
+                            <button className="px-2 py-2 rounded-sm" onClick={() => handleDeleteEducation(educ.id)}>
                                 <FontAwesomeIcon icon={Remove} className="text-2xl text-red-600 cursor-pointer"/>
                             </button>
                         </div>

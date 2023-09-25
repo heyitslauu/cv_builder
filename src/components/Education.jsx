@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import EducAccordion from "./molecules/EducAccordion";
 
-function EducationSection({education, onAddEducation, educForm, onChangeInput, onResetForm, onDeleteEducation}) {
+function EducationSection({education, onAddEducation, educForm, onChangeInput, onResetForm, onDeleteEducation, onUpdateEducation}) {
     const [isActive, setIsActive] = useState(false);
 
     const handleAccordionChange = () => {
@@ -18,6 +18,7 @@ function EducationSection({education, onAddEducation, educForm, onChangeInput, o
                 handleAccordionChange={handleAccordionChange}
                 educForm={educForm}
                 onChangeInput={onChangeInput}
+                onUpdateEducation={onUpdateEducation}
                 onResetForm={onResetForm}
                 onDeleteEducation={onDeleteEducation}
             />

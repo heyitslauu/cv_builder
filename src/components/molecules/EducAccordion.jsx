@@ -3,15 +3,36 @@
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CaretUp, CaretDown, GradCap, Edit, Remove, Plus } from "../../styles/fontAwesome";
-function EducAccordion({isActive, handleAccordionChange, education}) {
+import { CaretUp, CaretDown, GradCap} from "../../styles/fontAwesome";
+import EducForm from "../EducForm";
+import EducContent from "../EducContent";
+import EducEditForm from "../EducEditForm";
+function EducAccordion({isActive, handleAccordionChange, education, onAddEducation, educForm, onChangeInput, onResetForm, onDeleteEducation, onUpdateEducation}) {
 
     const [isFormVisible, setIsFormVisible] = useState(false);
+    const [editEducation, setEditEducation] = useState(null);
+    
 
     const handleFormShow = () => {
         setIsFormVisible(!isFormVisible);
     }
 
+    const handleEditExperience = (id) => {
+        setEditEducation(id)
+    }
+
+    const handleDeleteEducation = (id) => {
+        const indexToDelete = education.findIndex((education) => education.id == id);
+
+        const updatedEducation = [...education];
+        updatedEducation.splice(indexToDelete, 1);
+        onDeleteEducation(updatedEducation);
+    }
+
+
+    const cancelEdit = () => {
+        setEditEducation(null)
+    }
     return (
         <div className='accordion'>
             <div 
@@ -31,33 +52,37 @@ function EducAccordion({isActive, handleAccordionChange, education}) {
                     { !isFormVisible ? 
                     (
                         <div>
-                            {education.map((educ) => {
-                                return (
-                                    <div key={educ.id} className="border-y-2 border-gray-200 flex items-center justify-between  pr-4">
-                                    <div className="accordionContent py-2 ">
-                                            <h3 className="text-xl font-bold">{educ.degree}</h3>
-                                            <p className="text-md font-light text-gray-700">{educ.school}</p>
-                                        </div>
-                                        <div className="flex gap-2 items-center">
-                                            <button className="px-2 py-2 rounded-sm" >
-                                                <FontAwesomeIcon icon={Edit} className="text-2xl cursor-pointer"/>
-                                            </button>
-                                            <button className="px-2 py-2 rounded-sm" >
-                                                <FontAwesomeIcon icon={Remove} className="text-2xl text-red-600 cursor-pointer"/>
-                                            </button>
-                                        </div>
-                                    </div>
+                            { editEducation == null &&
+                                <EducContent
+                                    education={education}
+                                    handleFormShow={handleFormShow}
+                                    handleDeleteEducation={handleDeleteEducation}
+                                    handleEdit={handleEditExperience}
+                                /> 
+                            }
+
+                            {
+                                editEducation !== null && (
+                                    <EducEditForm 
+                                        onCancel={cancelEdit}
+                                        onUpdateEducation={onUpdateEducation}
+                                        education={education.find((educ) => educ.id == editEducation)}
+                                    />
                                 )
-                            })}
-                            <div className='addContext mx-auto flex justify-center mt-2'>
-                                <button className='cursor-pointer bg-gray-200 px-5 py-2 rounded-lg' onClick={handleFormShow}>
-                                    <FontAwesomeIcon icon={Plus}/> Education
-                                </button>
-                            </div>
+                            }
+                             
                         </div>
+                       
                     ) : 
                     (
-                        <div>hello</div>
+                        <EducForm
+                            onShowForm={handleFormShow}
+                            educForm={educForm}
+                            onChangeInput={onChangeInput}
+                            onAddEducation={onAddEducation}
+                            onResetForm={onResetForm}
+                        />
+        
                     )
                     }
                 </div>
