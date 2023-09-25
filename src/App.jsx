@@ -87,10 +87,12 @@ function App() {
       description: '',
     });
   };
+
   const handleExpiFormInput = (e) => {
     const {name, value} = e.target;
     setExpiInfo({...expiInfo, [name] : value});
   }
+
   const addExperience = (newExperience) => {
     setExperienceInfo((prevExperienceInfo) => [...prevExperienceInfo, newExperience])
   }
@@ -103,7 +105,6 @@ function App() {
     );
   };
  
-
   const onDeleteExperience = (updatedExperience) => {
     setExperienceInfo(updatedExperience)
   }
@@ -112,7 +113,7 @@ function App() {
     {
       id: uuidv4(),
       school: "Yale University",
-      degree: "Bachelor of Science in Computer Science",
+      degree: "Masters in Computer Science",
       completionDate: 2018
     },
     {
@@ -123,11 +124,52 @@ function App() {
     },
   ])
 
+  const [educInfo, setEducInfo] = useState({
+    id: uuidv4(),
+    school: '',
+    degree: '',
+    completionDate: ''
+  })
+
+  const handleEducFormInput = (e) => {
+    const {name, value} = e.target;
+    setEducInfo({...educInfo, [name] : value});
+  }
+
+  const addEducation = (newEducation) => {
+    setEducationInfo((prevEducation) => [...prevEducation, newEducation])
+  } 
+
+  const resetEducForm = () => {
+    setEducInfo({
+      id: uuidv4(),
+      school: '',
+      degree: '',
+      completionDate: ''
+    });
+  };
+
+  const onDeleteEducation = (updatedEducation) => {
+    setEducationInfo(updatedEducation);
+  }
+
+  const updateEducation = (updatedEducation) => {
+    setEducationInfo((prevEducation) =>
+      prevEducation.map((educ) =>
+      educ.id === updatedEducation.id ? updatedEducation : educ
+      )
+    );
+  };
+
   return (
     <div className="px-6 py-6 grid gap-4 grid-cols-2 bg-gray-200">
       <div className='editable rounded-md flex flex-col gap-4'>
         <GeneralInfo formInput={generalInfo} onInputChange={handleInputChange}/>
-        <Skills skillSets={skillSet} onAddSkills={handleAddNewSkills} onDeleteSkills={handleDeleteSkills}/>
+        <Skills 
+          skillSets={skillSet} 
+          onAddSkills={handleAddNewSkills} 
+          onDeleteSkills={handleDeleteSkills}
+        />
         <Experience 
           experiences={experienceInfo} 
           expiForm={expiInfo} 
@@ -136,10 +178,15 @@ function App() {
           onUpdateExperience={updateExperience}
           onResetExperience={resetExpiForm}
           onDeleteExperience={onDeleteExperience}
-          
         />
         <EducationSection
           education={educationInfo}
+          onAddEducation={addEducation}
+          educForm={educInfo}
+          onChangeInput={handleEducFormInput}
+          onResetForm={resetEducForm}
+          onDeleteEducation={onDeleteEducation}
+          onUpdateEducation={updateEducation}
         />
       </div>
       <div className="liveDisplay bg-white flex flex-col gap-4">
